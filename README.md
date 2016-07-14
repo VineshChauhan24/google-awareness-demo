@@ -31,7 +31,7 @@ A unified sensing platform enabling applications to be aware of multiple aspects
 
 ###Combining diffrent feces: 
 * There are _3 operators_ to combine diffrent fences and generate desire conditons: 
-  1. **OR condition**- Performs _or_ conditons between two fencesunsing [`AwarenessFence.or()`](https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/AwarenessFence.html#or(com.google.android.gms.awareness.fence.AwarenessFence...)).
-  2. **AND condition**- Performs _and_ conditons between two fencesunsing [`AwarenessFence.and()`](https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/AwarenessFence.html#and(com.google.android.gms.awareness.fence.AwarenessFence...)).
-  3. **NOT condition**- Performs _not_ conditons between two fencesunsing [`AwarenessFence.not()`](https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/AwarenessFence.html#not(com.google.android.gms.awareness.fence.AwarenessFence)).
+  1. **OR condition**- Performs _or_ conditons between two fences unsing [`AwarenessFence.or()`](https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/AwarenessFence.html#or(com.google.android.gms.awareness.fence.AwarenessFence...)).
+  2. **AND condition**- Performs _and_ conditons between two fences unsing [`AwarenessFence.and()`](https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/AwarenessFence.html#and(com.google.android.gms.awareness.fence.AwarenessFence...)).
+  3. **NOT condition**- Performs _not_ conditons between two fences unsing [`AwarenessFence.not()`](https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/AwarenessFence.html#not(com.google.android.gms.awareness.fence.AwarenessFence)).
 * [`CombineFenceApiActivity.java`](https://github.com/CommonUtils/Google-Awareness-Demo/blob/master/app/src/main/java/example/awarnessapi/CombineFenceApiActivity.java) demostarates how you can combine diffrent fences and generate desire conditions.
