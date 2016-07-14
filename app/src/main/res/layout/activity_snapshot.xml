@@ -102,6 +102,12 @@
             android:layout_marginRight="10dp"
             android:paddingTop="10dp" />
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/current_map"
+            tools:ignore="ContentDescription"/>
+
         <TextView
             android:id="@+id/latlng_time"
             android:layout_width="match_parent"

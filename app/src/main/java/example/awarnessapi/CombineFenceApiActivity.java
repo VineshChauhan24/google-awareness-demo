@@ -107,7 +107,7 @@ public class CombineFenceApiActivity extends AppCompatActivity implements View.O
         AwarenessFence locationFence = LocationFence.in(
                 23.0756607,    //Latitude of place
                 72.5253209,    //Longitude of place
-                100.00,        //Radius in meters
+                50.00,         //Radius in meters
                 5 * 1000);     //Wait for the five seconds
 
         /**

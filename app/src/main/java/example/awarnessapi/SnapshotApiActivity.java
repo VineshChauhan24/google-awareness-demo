@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.ActivityRecognitionResult;
 import com.google.android.gms.location.DetectedActivity;
 import com.google.android.gms.location.places.PlaceLikelihood;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -149,7 +151,7 @@ public class SnapshotApiActivity extends AppCompatActivity implements GoogleApiC
                         Weather weather = weatherResult.getWeather();
                         String weatherReport = "Temperature: " + weather.getTemperature(Weather.CELSIUS)
                                 + "\nHumidity: " + weather.getHumidity();
-                        ((TextView)findViewById(R.id.weather_status)).setText(weatherReport);
+                        ((TextView) findViewById(R.id.weather_status)).setText(weatherReport);
                     }
                 });
     }
@@ -188,7 +190,7 @@ public class SnapshotApiActivity extends AppCompatActivity implements GoogleApiC
                     }
                 });
     }
-
+ 
     @RequiresPermission("android.permission.ACCESS_FINE_LOCATION")
     private void getLocation() {
         //noinspection MissingPermission
@@ -209,6 +211,12 @@ public class SnapshotApiActivity extends AppCompatActivity implements GoogleApiC
                         TextView timeTv = (TextView) findViewById(R.id.latlng_time);
                         SimpleDateFormat sdf = new SimpleDateFormat("h:mm a dd-MM-yyyy", Locale.getDefault());
                         timeTv.setText("as on: " + sdf.format(new Date(location.getTime())));
+
+                        //Load the current map image from Google map
+                        String url = "https://maps.googleapis.com/maps/api/staticmap?center="
+                                + location.getLatitude() + "," + location.getLongitude()
+                                + "&zoom=20&size=400x250&key=" + getString(R.string.api_key);
+                        Picasso.with(SnapshotApiActivity.this).load(url).into((ImageView)findViewById(R.id.current_map));
                     }
                 });
     }
