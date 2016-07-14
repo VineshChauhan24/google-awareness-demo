@@ -6,10 +6,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -43,6 +46,7 @@ public class CombineFenceApiActivity extends AppCompatActivity implements View.O
         GoogleApiClient.ConnectionCallbacks {
     private static final String COMBINE_FENCE_ENTERING_KEY = "entringCombineFence";
     private static final String FENCE_RECEIVER_ACTION = "action.combine.fence";
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 12345678;
 
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTv;
@@ -80,11 +84,32 @@ public class CombineFenceApiActivity extends AppCompatActivity implements View.O
     public void onClick(final View view) {
         switch (view.getId()) {
             case R.id.register_fence:
-                registerFence();
+                //Check for the location permission. We need them to generate location fence.
+                if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(
+                            this,
+                            new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                            LOCATION_PERMISSION_REQUEST_CODE);
+                } else {
+                    registerFence();
+                }
                 break;
             case R.id.unregister_fence:
                 unregisterFence();
                 break;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            switch (requestCode) {
+                case LOCATION_PERMISSION_REQUEST_CODE://location permission granted
+                    //noinspection MissingPermission
+                    registerFence();
+                    break;
+            }
         }
     }
 
@@ -99,6 +124,10 @@ public class CombineFenceApiActivity extends AppCompatActivity implements View.O
         unregisterFence();
     }
 
+    /**
+     * Register fences to get notified at particular condition.
+     * Here we are using multiple fences and also combining them.
+     */
     private void registerFence() {
         /**
          * This is location fence will trigger while entering the into the given location.
@@ -172,6 +201,9 @@ public class CombineFenceApiActivity extends AppCompatActivity implements View.O
                 });
     }
 
+    /**
+     * unregister fence.
+     */
     private void unregisterFence() {
         Awareness.FenceApi.updateFences(
                 mGoogleApiClient,
