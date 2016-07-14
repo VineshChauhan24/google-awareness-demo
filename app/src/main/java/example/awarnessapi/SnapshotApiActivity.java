@@ -39,7 +39,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-
+/**
+ * This activity will demonstrate how to use snapshot apis.
+ *
+ * @see 'https://developers.google.com/awareness/android-api/snapshot-get-data'
+ */
 public class SnapshotApiActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks {
     private static final int GET_LOCATION_PERMISSION_REQUEST_CODE = 12345;
     private static final int GET_PLACE_PERMISSION_REQUEST_CODE = 123456;
@@ -135,6 +139,9 @@ public class SnapshotApiActivity extends AppCompatActivity implements GoogleApiC
         }
     }
 
+    /**
+     * Get the current weather condition at current location.
+     */
     @RequiresPermission("android.permission.ACCESS_FINE_LOCATION")
     private void getWeather() {
         //noinspection MissingPermission
@@ -156,6 +163,9 @@ public class SnapshotApiActivity extends AppCompatActivity implements GoogleApiC
                 });
     }
 
+    /**
+     * Get the nearby places using Snapshot apis. We are going to display only first 5 places to the user in the list.
+     */
     @RequiresPermission("android.permission.ACCESS_FINE_LOCATION")
     private void getPlace() {
         //noinspection MissingPermission
@@ -190,7 +200,10 @@ public class SnapshotApiActivity extends AppCompatActivity implements GoogleApiC
                     }
                 });
     }
- 
+
+    /**
+     * Get user's current location. We are also displaying Google Static map.
+     */
     @RequiresPermission("android.permission.ACCESS_FINE_LOCATION")
     private void getLocation() {
         //noinspection MissingPermission
@@ -216,7 +229,7 @@ public class SnapshotApiActivity extends AppCompatActivity implements GoogleApiC
                         String url = "https://maps.googleapis.com/maps/api/staticmap?center="
                                 + location.getLatitude() + "," + location.getLongitude()
                                 + "&zoom=20&size=400x250&key=" + getString(R.string.api_key);
-                        Picasso.with(SnapshotApiActivity.this).load(url).into((ImageView)findViewById(R.id.current_map));
+                        Picasso.with(SnapshotApiActivity.this).load(url).into((ImageView) findViewById(R.id.current_map));
                     }
                 });
     }

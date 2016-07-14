@@ -85,6 +85,11 @@ public class ActivityFanceApiDemo extends AppCompatActivity implements  View.OnC
         unregisterActivityFence();
     }
 
+    /**
+     * Register the user activity fence. This will register two fences.
+     * 1. Fence to activate when user is still
+     * 2. When user is walking.
+     */
     private void registerActivityFence() {
         //generate fence
         AwarenessFence activityStillFence = DetectedActivityFence.during(DetectedActivityFence.STILL);
@@ -163,6 +168,9 @@ public class ActivityFanceApiDemo extends AppCompatActivity implements  View.OnC
                 }).show();
     }
 
+    /**
+     * A {@link BroadcastReceiver} to be called when any of the awareness fence is activated.
+     */
     private BroadcastReceiver mActivityFenceReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, final Intent intent) {

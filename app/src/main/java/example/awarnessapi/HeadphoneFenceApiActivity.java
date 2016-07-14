@@ -86,6 +86,11 @@ public class HeadphoneFenceApiActivity extends AppCompatActivity implements View
         unregisterHeadPhoneFence();
     }
 
+    /**
+     * Register the headphone status fence. This will register two fences.
+     * 1. Fence to activate when headphones plugged in
+     * 2. When headphones unplugged.
+     */
     private void registerHeadphoneFence() {
         //generate fence
         AwarenessFence headphonePlugFence = HeadphoneFence.during(HeadphoneState.PLUGGED_IN);
@@ -121,6 +126,9 @@ public class HeadphoneFenceApiActivity extends AppCompatActivity implements View
                 .addFence(HEADPHONE_UNPLUG_FENCE_KEY, headphoneUnplugFence, fencePendingIntent).build());
     }
 
+    /**
+     * Unregister all fences.
+     */
     private void unregisterHeadPhoneFence() {
         Awareness.FenceApi.updateFences(
                 mGoogleApiClient,
@@ -164,6 +172,9 @@ public class HeadphoneFenceApiActivity extends AppCompatActivity implements View
                 }).show();
     }
 
+    /**
+     * A {@link BroadcastReceiver} to be called when any of the awareness fence is activated.
+     */
     private BroadcastReceiver mHeadPhoneFenceReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, final Intent intent) {
