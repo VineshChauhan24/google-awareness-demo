@@ -3,7 +3,7 @@
 ##What is Awarness API?
 A unified sensing platform enabling applications to be aware of multiple aspects of a users context, while managing battery and memory health.
 
-###There are two types of awarness APIs. 
+####There are two types of awarness APIs. 
   1. Snapshot APIs.
   2. Fence  APIs.
 
@@ -29,9 +29,11 @@ A unified sensing platform enabling applications to be aware of multiple aspects
 * [`HeadphoneFenceApiActivity.java`](https://github.com/CommonUtils/Google-Awareness-Demo/blob/master/app/src/main/java/example/awarnessapi/HeadphoneFenceApiActivity.java) and [`ActivityFenceApiActivity.java`](https://github.com/CommonUtils/Google-Awareness-Demo/blob/master/app/src/main/java/example/awarnessapi/ActivityFanceApiDemo.java) will demostarate how to use this fences without combining them with other fences.
 * For more details visit this [link](https://developers.google.com/awareness/android-api/fence-api-overview).
 
-###Combining diffrent feces: 
+####Combining diffrent feces: 
 * There are _3 operators_ to combine diffrent fences and generate desire conditons: 
   1. **OR condition**- Performs _or_ conditons between two fences unsing [`AwarenessFence.or()`](https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/AwarenessFence.html#or(com.google.android.gms.awareness.fence.AwarenessFence...)).
   2. **AND condition**- Performs _and_ conditons between two fences unsing [`AwarenessFence.and()`](https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/AwarenessFence.html#and(com.google.android.gms.awareness.fence.AwarenessFence...)).
   3. **NOT condition**- Performs _not_ conditons between two fences unsing [`AwarenessFence.not()`](https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/AwarenessFence.html#not(com.google.android.gms.awareness.fence.AwarenessFence)).
 * [`CombineFenceApiActivity.java`](https://github.com/CommonUtils/Google-Awareness-Demo/blob/master/app/src/main/java/example/awarnessapi/CombineFenceApiActivity.java) demostarates how you can combine diffrent fences and generate desire conditions.
+
+##### You can download demo apk from [here](https://github.com/CommonUtils/Google-Awareness-Demo/blob/master/Demo.apk).
